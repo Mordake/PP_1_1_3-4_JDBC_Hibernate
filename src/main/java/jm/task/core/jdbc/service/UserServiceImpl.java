@@ -7,11 +7,12 @@ import jm.task.core.jdbc.model.User;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserDao userDao = new UserDaoJDBCImpl();
+    private final UserDao userDao = new UserDaoJDBCImpl();
 
     @Override
     public void createUsersTable() {
         userDao.createUsersTable();
+
     }
 
     @Override
@@ -22,11 +23,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(String name, String lastName, byte age) {
         userDao.saveUser(name, lastName, age);
+        System.out.println("User с именем: " + name + " добавлен в базу данных");
     }
 
     @Override
     public void removeUserById(long id) {
         userDao.removeUserById(id);
+        System.out.println("User с ID: " + id + " удален из базы данных");
     }
 
     @Override

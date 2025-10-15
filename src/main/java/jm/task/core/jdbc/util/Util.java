@@ -11,19 +11,22 @@ public class Util {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
+    private static Connection conn;
+
     public static Connection getConnection() {
 
         try {
             Class.forName(DRIVER);
 
-            return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException("Не удалось загрузить класс драйвера: ", e);
         }
+        return conn;
     }
 
-    public static void closeConnection(Connection conn) {
+    public static void closeConnection() {
         if (conn != null) {
             try {
                 conn.close();
