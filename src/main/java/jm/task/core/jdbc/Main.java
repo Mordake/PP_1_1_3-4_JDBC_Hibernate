@@ -17,8 +17,23 @@ public class Main {
             userService.getAllUsers().forEach(System.out::println);
             userService.cleanUsersTable();
             userService.dropUsersTable();
+
         } finally {
-            Util.closeConnection();
+            Util.closeSessionFactory();
         }
+//        try {
+//            userService.createUsersTable();
+//            userService.saveUser("Artem", "Iasko", (byte) 25);
+//            userService.saveUser("Vova", "Petrosyan", (byte) 23);
+//            userService.saveUser("Vage", "Gevorgyan", (byte) 27);
+//            userService.saveUser("Erik", "Osipov", (byte) 29);
+//            userService.getAllUsers().forEach(System.out::println);
+//            userService.cleanUsersTable();
+//            userService.dropUsersTable();
+//        } finally {
+//            Util.closeConnection();
+//        }
+
+
     }
 }
