@@ -22,6 +22,7 @@ public class Util {
 
     private static Connection conn;
 
+
     public static Connection getConnection() {
 
         try {
@@ -35,16 +36,6 @@ public class Util {
         return conn;
     }
 
-    public static void closeConnection() {
-        if (conn != null) {
-            try {
-                conn.close();
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 
     private static SessionFactory sessionFactory;
 
@@ -74,11 +65,21 @@ public class Util {
         return sessionFactory;
     }
 
-    public static void closeSessionFactory() {
+    public static void closeResources() {
         if (sessionFactory != null) {
             try {
                 sessionFactory.close();
+
             } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (conn != null) {
+            try {
+                conn.close();
+
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
